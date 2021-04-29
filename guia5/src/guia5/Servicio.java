@@ -1,6 +1,7 @@
 package guia5;
 
-public abstract class Servicio implements Contratable {
+
+public abstract class Servicio {
 	protected String nombre;
 	protected Oficio oficio;
 	protected boolean urgente; // si es urgente, precio +50%

@@ -1,7 +1,6 @@
 package guia5;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Trabajador {
 	protected String nombre;
@@ -34,5 +33,30 @@ public class Trabajador {
 	public void setCostoPorHora(double costoPorHora) {this.costoPorHora = costoPorHora;}
 	public void setComision(double comision) {this.comision = comision;}
 	
+	public void agregarTrabajo(Trabajo trabajo) {
+		try {
+			if(this.oficioCorrecto(trabajo.getServicio().getOficio())) {
+				try {
+					if(this.agendaLibre(trabajo.fechaFin))
+				}
+				catch (AgendaOcupadaException e){
+					e.printStackTrace();
+				}
+			}
+		}
+		catch (OficioNoCoincideException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private boolean oficioCorrecto(Oficio oficio) throws OficioNoCoincideException{
+		if(oficio.equals(this.oficio)) return true;
+		else throw new OficioNoCoincideException("El oficio del trabajador es "+ (this.oficio.getNombre()));
+	}
+	
+	private boolean agendaLibre(LocalDate fechaActual) {
+		
+	}
+	}
 
 }
