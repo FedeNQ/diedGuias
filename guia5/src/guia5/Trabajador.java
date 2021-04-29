@@ -1,5 +1,6 @@
 package guia5;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Trabajador {
@@ -37,7 +38,9 @@ public class Trabajador {
 		try {
 			if(this.oficioCorrecto(trabajo.getServicio().getOficio())) {
 				try {
-					if(this.agendaLibre(trabajo.fechaFin))
+					if(this.agendaLibre(trabajo.fechaFin)) {
+						this.listaDeTrabajos.add(trabajo);
+					}
 				}
 				catch (AgendaOcupadaException e){
 					e.printStackTrace();
@@ -54,9 +57,11 @@ public class Trabajador {
 		else throw new OficioNoCoincideException("El oficio del trabajador es "+ (this.oficio.getNombre()));
 	}
 	
-	private boolean agendaLibre(LocalDate fechaActual) {
-		
-	}
+	private boolean agendaLibre(LocalDate fechaActual) throws AgendaOcupadaException {
+		for(Trabajo t : listaDeTrabajos) {
+			if(t.getFechaFin().isEqual(fechaActual)) return false;
+		}
+		return true;
 	}
 
 }

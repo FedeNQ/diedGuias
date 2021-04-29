@@ -16,6 +16,7 @@ public class Alquiler implements Contratable {
 		this.fechaRealDevolucion = null;
 	}
 	
+	public Alquiler() {super();} // para que no tire error en Usuario
 	
 	//getters & setters
 	public Herramienta getHerramienta() {return herramienta;}
